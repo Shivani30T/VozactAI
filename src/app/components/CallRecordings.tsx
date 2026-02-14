@@ -46,6 +46,17 @@ export function CallRecordings({ calls, recordings = [], isLoading = false, onRe
   const [isDeleting, setIsDeleting] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
 
+  // Map for looking up contact names based on call records (used for API recordings)
+  const recordingContactMap = useMemo(() => {
+    const map = new Map<string, string>();
+    calls.forEach(call => {
+      if (call.contact_id) {
+        map.set(call.contact_id, call.contactName);
+      }
+    });
+    return map;
+  }, [calls]);
+
   // Filter and search calls
   const filteredCalls = useMemo(() => {
     return calls.filter(call => {
@@ -283,9 +294,17 @@ export function CallRecordings({ calls, recordings = [], isLoading = false, onRe
                         <Phone className="h-4 w-4 text-green-800" />
                       </div>
                       <div>
-                        <p className="font-medium text-green-900">Recording #{recording.id}</p>
+                        {/* display name (if available) and duration instead of raw id */}
+                        <p className="font-medium text-green-900">
+                          {recordingContactMap.get(recording.contact_id) || `Recording #${recording.id}`}
+                          {recording.duration_seconds !== undefined && (
+                            <span className="ml-2 text-xs text-green-700">
+                              ({formatDuration(recording.duration_seconds)})
+                            </span>
+                          )}
+                        </p>
                         <p className="text-sm text-green-600">
-                          Contact: {recording.contact_id} | Campaign: {recording.campaign_id}
+                          Contact ID: {recording.contact_id} | Campaign: {recording.campaign_id}
                         </p>
                         <div className="flex items-center gap-3 mt-1 text-xs text-green-500">
                           <span className="flex items-center gap-1">
