@@ -21,7 +21,7 @@ export function Header() {
               <Phone className="h-6 w-6 text-blue-900" />
             </div>
             <div>
-              <h1 className="text-xl text-white">Vozact.AI</h1>
+              <h1 className="text-xl text-white">Voizmatic</h1>
               <p className="text-xs text-blue-200">AI Voice in Action</p>
             </div>
           </div>
