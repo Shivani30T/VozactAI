@@ -96,7 +96,7 @@ export function LoginScreen() {
             <div className="bg-white p-3 rounded-full shadow-lg">
               <Phone className="h-12 w-12 text-blue-900" />
             </div>
-            <h1 className="text-4xl text-white">Vozact.AI</h1>
+            <h1 className="text-4xl text-white">Voizmatic</h1>
           </div>
           <p className="text-blue-100 text-lg">
             AI Voice in Action
