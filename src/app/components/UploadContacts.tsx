@@ -140,17 +140,17 @@ Bob Johnson,+1-555-0103,bob@example.com,"789 Pine Rd, City, State"`;
         <CardContent className="pt-6">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {categoryOptions.map((category) => (
-              <button
+              <Button
                 key={category}
+                type="button"
                 onClick={() => setSelectedCategory(category)}
-                className={`p-4 rounded-lg border-2 transition-all text-left ${
-                  selectedCategory === category
-                    ? 'bg-blue-900 text-white border-blue-900'
-                    : 'bg-white text-blue-900 border-blue-200 hover:border-blue-500'
-                }`}
+                variant={
+                  selectedCategory === category ? 'default' : 'outline'
+                }
+                className="justify-start text-left p-4 rounded-lg"
               >
                 <div className="font-semibold text-sm">{category}</div>
-              </button>
+              </Button>
             ))}
           </div>
           
